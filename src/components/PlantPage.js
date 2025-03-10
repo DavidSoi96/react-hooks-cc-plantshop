@@ -9,23 +9,23 @@ function PlantPage() {
 
   useEffect(() => {
     fetch("http://localhost:6001/plants")
-      .then((r) => r.json())
-      .then(setPlants);
+      .then((response) => response.json())
+      .then((data) => setPlants(data));
   }, []);
 
-  function handleAddPlant(newPlant) {
-    setPlants([...plants, newPlant]);
+  function addPlant(newPlant) {
+    setPlants((prevPlants) => [...prevPlants, newPlant]);
   }
 
-  const displayedPlants = plants.filter((plant) =>
+  const filteredPlants = plants.filter((plant) =>
     plant.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <main>
-      <NewPlantForm onAddPlant={handleAddPlant} />
+      <NewPlantForm onAddPlant={addPlant} />
       <Search searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-      <PlantList plants={displayedPlants} setPlants={setPlants} />
+      <PlantList plants={filteredPlants} setPlants={setPlants} />
     </main>
   );
 }
