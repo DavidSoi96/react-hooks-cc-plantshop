@@ -4,7 +4,7 @@ import PlantPage from "./PlantPage";
 
 function App() {
   return (
-    <div className="app">
+    <div>
       <Header />
       <PlantPage />
     </div>
